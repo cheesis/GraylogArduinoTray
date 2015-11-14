@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Product Id="*" Name="Graylog Monitor" Language="1033" Version="1.0.0.0" Manufacturer="Justus" UpgradeCode="2804548e-2cb0-4158-82bc-31840b68520b">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
+		<MediaTemplate EmbedCab="yes"/>
+    <Icon Id="icon.ico" SourceFile="$(var.GraylogArduinoTray.ProjectDir)icons\sadIcon.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+    <WixVariable Id="WixUILicenseRtf" Value="myLicense.rtf" />
 
-		<Feature Id="ProductFeature" Title="SetupProject" Level="1">
+		<Feature Id="ProductFeature" Title="GraylogMonitor" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
       <ComponentRef Id="ApplicationShortcut" />
       <ComponentRef Id="AutostartShortcutComp" />
     </Feature>
+    <UI>
+      <UIRef Id="WixUI_Minimal" />
+      <Publish Dialog="ExitDialog"
+        Control="Finish" 
+        Event="DoAction" 
+        Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed
+      </Publish>
+    </UI>
+  <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Graylog Monitor" />
+  <Property Id="WixShellExecTarget" Value="[#myexe]" />
+  <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
 	</Product>
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
+			<Directory Id="LocalAppDataFolder">
 				<Directory Id="INSTALLFOLDER" Name="GraylogMonitor" />
 			</Directory>
       <Directory Id="ProgramMenuFolder">
@@ -55,9 +69,13 @@
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			 <!--TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer.--> 
-			 <Component Id="ProductComponent">
+			 <Component Id="ProductComponent" Guid="{D8E4DA33-336F-4D74-BA3A-4F25B0ADEE6F}">
+         <RegistryKey Root="HKCU" Key="Software\Justus\GraylogMonitor" ForceDeleteOnUninstall="yes">
+           <RegistryValue Name="exe" Value="1" KeyPath="yes" Type="integer" />
+         </RegistryKey>
          <File Source="$(var.GraylogArduinoTray.TargetPath)" Id="myexe"/>
          <File Source="$(var.GraylogArduinoTray.TargetDir)GraylogArduinoTray.exe.config" />
+         <RemoveFolder Id="RemoveMyAppDirectory" On="uninstall"/>
          <!--check this link http://wixtoolset.org/documentation/manual/v3/votive/votive_project_references.html-->
        </Component> 
 		</ComponentGroup>
