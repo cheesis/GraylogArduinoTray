@@ -15,7 +15,7 @@
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="LocalAppDataFolder">
+			<Directory Id="ProgramFilesFolder">
 				<Directory Id="INSTALLFOLDER" Name="GraylogMonitor" />
 			</Directory>
       <Directory Id="ProgramMenuFolder">
