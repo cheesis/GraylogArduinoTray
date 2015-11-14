@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraylogArduinoTray", "GraylogArduinoTray\GraylogArduinoTray.csproj", "{513DD7C6-1982-4EE6-BA6A-ADF0F7F834F6}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SetupProject", "SetupProject\SetupProject.wixproj", "{73355043-F3B4-4CF7-8EDF-20B90A761067}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TestServer", "TestServer\TestServer.njsproj", "{B9D07112-D662-420D-A058-A10F7DF75F0D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box", "Box\Box.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{513DD7C6-1982-4EE6-BA6A-ADF0F7F834F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{513DD7C6-1982-4EE6-BA6A-ADF0F7F834F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{513DD7C6-1982-4EE6-BA6A-ADF0F7F834F6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{513DD7C6-1982-4EE6-BA6A-ADF0F7F834F6}.Debug|x86.Build.0 = Debug|Any CPU
+		{513DD7C6-1982-4EE6-BA6A-ADF0F7F834F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{513DD7C6-1982-4EE6-BA6A-ADF0F7F834F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{513DD7C6-1982-4EE6-BA6A-ADF0F7F834F6}.Release|x86.ActiveCfg = Release|Any CPU
+		{513DD7C6-1982-4EE6-BA6A-ADF0F7F834F6}.Release|x86.Build.0 = Release|Any CPU
+		{73355043-F3B4-4CF7-8EDF-20B90A761067}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{73355043-F3B4-4CF7-8EDF-20B90A761067}.Debug|x86.ActiveCfg = Debug|x86
+		{73355043-F3B4-4CF7-8EDF-20B90A761067}.Debug|x86.Build.0 = Debug|x86
+		{73355043-F3B4-4CF7-8EDF-20B90A761067}.Release|Any CPU.ActiveCfg = Release|x86
+		{73355043-F3B4-4CF7-8EDF-20B90A761067}.Release|x86.ActiveCfg = Release|x86
+		{73355043-F3B4-4CF7-8EDF-20B90A761067}.Release|x86.Build.0 = Release|x86
+		{B9D07112-D662-420D-A058-A10F7DF75F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D07112-D662-420D-A058-A10F7DF75F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D07112-D662-420D-A058-A10F7DF75F0D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B9D07112-D662-420D-A058-A10F7DF75F0D}.Debug|x86.Build.0 = Debug|Any CPU
+		{B9D07112-D662-420D-A058-A10F7DF75F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D07112-D662-420D-A058-A10F7DF75F0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D07112-D662-420D-A058-A10F7DF75F0D}.Release|x86.ActiveCfg = Release|Any CPU
+		{B9D07112-D662-420D-A058-A10F7DF75F0D}.Release|x86.Build.0 = Release|Any CPU
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.ActiveCfg = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.Build.0 = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|Any CPU.ActiveCfg = Release|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.ActiveCfg = Release|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

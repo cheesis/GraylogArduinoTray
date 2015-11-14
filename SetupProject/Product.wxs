@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="Graylog Monitor" Language="1033" Version="1.0.0.0" Manufacturer="Justus" UpgradeCode="2804548e-2cb0-4158-82bc-31840b68520b">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="SetupProject" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="AutostartShortcutComp" />
+    </Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="LocalAppDataFolder">
+				<Directory Id="INSTALLFOLDER" Name="GraylogMonitor" />
+			</Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Graylog Monitor"/>
+      </Directory>
+      <Directory Id="StartupFolder"></Directory>
+		</Directory>
+	</Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="{8349989E-D723-4B65-B257-CA6F445209F5}">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="Graylog Monitor"
+                  Description="Queries elasatic search"
+                  Target="[#myexe]"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\Justus\GraylogMonitor" Name="StartMenu" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="StartupFolder">
+      <Component Id="AutostartShortcutComp" Guid="{45E6F2AA-B385-45B1-BD85-C2F00247AC20}">
+        <Shortcut Id="AutostartShortcutSC"
+                  Name="Graylog Monitor"
+                  Description="Queries elasatic search"
+                  Target="[#myexe]"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+        <RegistryValue Root="HKCU" Key="Software\Justus\GraylogMonitor" Name="Austostart" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			 <!--TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer.--> 
+			 <Component Id="ProductComponent">
+         <File Source="$(var.GraylogArduinoTray.TargetPath)" Id="myexe"/>
+         <File Source="$(var.GraylogArduinoTray.TargetDir)GraylogArduinoTray.exe.config" />
+         <!--check this link http://wixtoolset.org/documentation/manual/v3/votive/votive_project_references.html-->
+       </Component> 
+		</ComponentGroup>
+	</Fragment>
+</Wix>
