@@ -63,9 +63,29 @@ namespace GraylogArduinoTray.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon sadIcon {
+        internal static System.Drawing.Icon ErrorsIcon {
             get {
-                object obj = ResourceManager.GetObject("sadIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("ErrorsIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon NoConnectionIcon {
+            get {
+                object obj = ResourceManager.GetObject("NoConnectionIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon OkayIcon {
+            get {
+                object obj = ResourceManager.GetObject("OkayIcon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

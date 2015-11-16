@@ -7,7 +7,7 @@
 		"failed": 0
 	},
 	"hits": {
-		"total": 1004,
+		"total": 1005,
 		"max_score": 1.0,
 		"hits": [{
 			"_index": "graylog2_21",

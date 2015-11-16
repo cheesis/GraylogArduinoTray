@@ -76,7 +76,7 @@
          <File Source="$(var.GraylogArduinoTray.TargetPath)" Id="myexe"/>
          <File Source="$(var.GraylogArduinoTray.TargetDir)GraylogArduinoTray.exe.config" />
          <RemoveFolder Id="RemoveMyAppDirectory" On="uninstall"/>
-         <!--check this link http://wixtoolset.org/documentation/manual/v3/votive/votive_project_references.html-->
+         <!--check this link http://wixtoolset.org/documentation/manual/v3/votive/votive_project_references.html -->
        </Component> 
 		</ComponentGroup>
 	</Fragment>

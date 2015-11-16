@@ -9,17 +9,20 @@ namespace GraylogArduinoTray
 
         public static void log(string msg)
         {
-            Trace.TraceInformation(msg);
+            if (Properties.Settings.Default.EnableLogging)
+                Trace.TraceInformation(msg);
         }
 
         public static void error(string msg)
         {
-            Trace.TraceError(msg);
+            if (Properties.Settings.Default.EnableLogging)
+                Trace.TraceError(msg);
         }
 
         public static void warning(string msg)
         {
-            Trace.TraceWarning(msg);
+            if (Properties.Settings.Default.EnableLogging)
+                Trace.TraceWarning(msg);
         }
     }
 }

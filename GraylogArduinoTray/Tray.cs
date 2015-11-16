@@ -25,12 +25,13 @@ using System.Windows.Forms;
     the reason is that I want to make sure nothing is missed, if going form the last query dimestamp timing issues could lead to missign events or double reporting them
     another upside of this is that I don't have to provide the time zone of my time stamps which makes the queries static, so they can go into settings
 
-
+      
     TODO
     =====
     C#
-    - create installer
-        - copy usb driver...for that we have to find it first
+    - switch icons between white and red depending on whether we have errors
+        - click on balloon or menu item to reset
+        - add menu item to reset
 
 */
 
@@ -42,6 +43,8 @@ namespace GraylogArduinoTray
         private NotifyIcon trayIcon;
         private Arduino arduino;
         private ElasticSearch prodErrors;
+        enum queryStatus { Okay, NoConnection, Errors};
+        private queryStatus lastStatus;
 
         public GrayLogTray()
         {
@@ -52,6 +55,7 @@ namespace GraylogArduinoTray
             // Create a simple tray menu with only one item.
             trayMenu = new ContextMenu();
             trayMenu.MenuItems.Add("Settings", OnSettings);
+            trayMenu.MenuItems.Add("Reset Status", OnReset);
             trayMenu.MenuItems.Add("Exit", OnExit);
 
             // Create a tray icon. In this example we use a
@@ -59,7 +63,7 @@ namespace GraylogArduinoTray
             // can of course use your own custom icon too.
             trayIcon = new NotifyIcon();
             trayIcon.Text = "GraylogArduino";
-            trayIcon.Icon = Properties.Resources.sadIcon;
+            setTrayIcon(queryStatus.NoConnection);
 
             // Add menu to tray icon and show it.
             trayIcon.ContextMenu = trayMenu;
@@ -76,6 +80,28 @@ namespace GraylogArduinoTray
             timer.Enabled = true;
         }
 
+        private void OnReset(object sender, EventArgs e)
+        {
+            setTrayIcon(queryStatus.Okay);
+        }
+
+        private void setTrayIcon(queryStatus qs)
+        {
+            lastStatus = qs;
+            switch(qs)
+            {
+                case queryStatus.NoConnection:
+                    trayIcon.Icon = Properties.Resources.NoConnectionIcon;
+                    break;
+                case queryStatus.Errors:
+                    trayIcon.Icon = Properties.Resources.ErrorsIcon;
+                    break;
+                case queryStatus.Okay:
+                    trayIcon.Icon = Properties.Resources.OkayIcon;
+                    break;
+            }
+        }
+
         private void DoOnTimer(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
@@ -84,9 +110,16 @@ namespace GraylogArduinoTray
 
             prodErrors.postSearch();
 
-            if (prodErrors.numberOfHits > prodErrrosBefore)
+            // if the search failed then we show that by setting a certain icon in the tray
+            // we don't change the icon if we had errors before - we don't want to hide that fact
+            if (!prodErrors.lastSearchSuccessful && lastStatus != queryStatus.Errors)
+            {
+                setTrayIcon(queryStatus.NoConnection);
+            }
+            else if (prodErrors.numberOfHits > prodErrrosBefore)
             {
                 // OMG new errors
+                setTrayIcon(queryStatus.Errors);
                 int errors = prodErrors.numberOfHits - prodErrrosBefore;
                 bool success = arduino.sendError(errors);
                 trayBalloon(prodErrors.numberOfHits - prodErrrosBefore);
@@ -107,6 +140,7 @@ namespace GraylogArduinoTray
         private void TrayIcon_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(Properties.Settings.Default.OnTrayBalloonClickURI);
+            setTrayIcon(queryStatus.Okay);
         }
 
         private void OnSettings(object sender, EventArgs e)

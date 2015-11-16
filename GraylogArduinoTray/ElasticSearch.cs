@@ -14,9 +14,10 @@ namespace GraylogArduinoTray
     {
         public WebRequest request;
         public WebResponse response;
-        public int numberOfHits; // total number of hits we receive from elastic search
+        public int numberOfHits = 0; // total number of hits we receive from elastic search
         public string hits;  // some hits that we parse for printing
         public string url, body;
+        public bool lastSearchSuccessful;
 
         public ElasticSearch(string _url, string _body)
         {
@@ -58,9 +59,12 @@ namespace GraylogArduinoTray
                 {
                     throw new Exception(string.Format("No response was received wen requesting data from {0} with JSON {1}", url, body));
                 }
+
+                lastSearchSuccessful = true;
             }
             catch (Exception e)
             {
+                lastSearchSuccessful = false;
                 Logger.error(e.ToString());
             }
         }
