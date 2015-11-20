@@ -124,8 +124,8 @@ namespace GraylogArduinoTray
             [System.Runtime.Serialization.DataMemberAttribute()]
             public int total;
 
-            [System.Runtime.Serialization.DataMemberAttribute()]
-            public double max_score;
+            //[System.Runtime.Serialization.DataMemberAttribute()]
+            //public double max_score;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public Hits1[] hits;

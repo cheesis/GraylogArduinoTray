@@ -63,6 +63,7 @@ namespace GraylogArduinoTray
             // can of course use your own custom icon too.
             trayIcon = new NotifyIcon();
             trayIcon.Text = "GraylogArduino";
+            trayIcon.BalloonTipClicked += new EventHandler(TrayIcon_Click);
             setTrayIcon(queryStatus.NoConnection);
 
             // Add menu to tray icon and show it.
@@ -131,7 +132,6 @@ namespace GraylogArduinoTray
             if (Properties.Settings.Default.ShowBalloon)
             {
                 trayIcon.BalloonTipText = entries + " found.";
-                trayIcon.BalloonTipClicked += new EventHandler(TrayIcon_Click);
                 trayIcon.BalloonTipTitle = "Errors found";
                 trayIcon.ShowBalloonTip(3);
             }
