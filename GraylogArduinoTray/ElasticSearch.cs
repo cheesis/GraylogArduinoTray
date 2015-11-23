@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.IO;
@@ -87,7 +87,7 @@ namespace GraylogArduinoTray
         [System.Runtime.Serialization.DataContractAttribute()]
         public partial class SearchResponse
         {
-
+/*
             [System.Runtime.Serialization.DataMemberAttribute()]
             public int took;
 
@@ -96,11 +96,11 @@ namespace GraylogArduinoTray
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public _shards _shards;
-
+*/
             [System.Runtime.Serialization.DataMemberAttribute()]
             public Hits hits;
         }
-
+/*
         // Type created for JSON at <<root>> --> _shards
         [System.Runtime.Serialization.DataContractAttribute()]
         public partial class _shards
@@ -115,7 +115,7 @@ namespace GraylogArduinoTray
             [System.Runtime.Serialization.DataMemberAttribute()]
             public int failed;
         }
-
+*/
         // Type created for JSON at <<root>> --> hits
         [System.Runtime.Serialization.DataContractAttribute(Name = "hits")]
         public partial class Hits
@@ -127,10 +127,10 @@ namespace GraylogArduinoTray
             //[System.Runtime.Serialization.DataMemberAttribute()]
             //public double max_score;
 
-            [System.Runtime.Serialization.DataMemberAttribute()]
-            public Hits1[] hits;
+            //[System.Runtime.Serialization.DataMemberAttribute()]
+            //public Hits1[] hits;
         }
-
+/*
         // Type created for JSON at <<root>> --> hits --> hits
         [System.Runtime.Serialization.DataContractAttribute(Name = "hits")]
         public partial class Hits1
@@ -151,7 +151,8 @@ namespace GraylogArduinoTray
             [System.Runtime.Serialization.DataMemberAttribute()]
             public _source _source;
         }
-
+*/
+        /*
         // Type created for JSON at <<root>> --> _source
         [System.Runtime.Serialization.DataContractAttribute()]
         public partial class _source
@@ -232,4 +233,5 @@ namespace GraylogArduinoTray
             [System.Runtime.Serialization.DataMemberAttribute()]
             public string[] streams;
         }
+*/
 }

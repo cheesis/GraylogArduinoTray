@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -88,18 +88,21 @@ namespace GraylogArduinoTray
 
         private void setTrayIcon(queryStatus qs)
         {
-            lastStatus = qs;
-            switch(qs)
+            if (lastStatus != qs)
             {
-                case queryStatus.NoConnection:
-                    trayIcon.Icon = Properties.Resources.NoConnectionIcon;
-                    break;
-                case queryStatus.Errors:
-                    trayIcon.Icon = Properties.Resources.ErrorsIcon;
-                    break;
-                case queryStatus.Okay:
-                    trayIcon.Icon = Properties.Resources.OkayIcon;
-                    break;
+                lastStatus = qs;
+                switch (qs)
+                {
+                    case queryStatus.NoConnection:
+                        trayIcon.Icon = Properties.Resources.NoConnectionIcon;
+                        break;
+                    case queryStatus.Errors:
+                        trayIcon.Icon = Properties.Resources.ErrorsIcon;
+                        break;
+                    case queryStatus.Okay:
+                        trayIcon.Icon = Properties.Resources.OkayIcon;
+                        break;
+                }
             }
         }
 
@@ -124,6 +127,10 @@ namespace GraylogArduinoTray
                 int errors = prodErrors.numberOfHits - prodErrrosBefore;
                 bool success = arduino.sendError(errors);
                 trayBalloon(prodErrors.numberOfHits - prodErrrosBefore);
+            }
+            else
+            {
+                setTrayIcon(queryStatus.Okay);
             }
         }
 
