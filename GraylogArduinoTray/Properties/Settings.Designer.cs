@@ -49,19 +49,7 @@ namespace GraylogArduinoTray.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("id")]
-        public string ResultJSONField {
-            get {
-                return ((string)(this["ResultJSONField"]));
-            }
-            set {
-                this["ResultJSONField"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8090/_search")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.120.156:9200/_search")]
         public string ProdErrorURI {
             get {
                 return ((string)(this["ProdErrorURI"]));
@@ -81,7 +69,7 @@ namespace GraylogArduinoTray.Properties {
                     ""must"": [{
                         ""range"": {
                             ""timestamp"": {
-                                ""eq"": ""now/d""
+                                ""gte"": ""now/d""
                             }
                         }
                     },
@@ -109,7 +97,7 @@ namespace GraylogArduinoTray.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.google.se")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"http://192.168.120.155:5601/#/dashboard/System-Health?_g=(refreshInterval:(display:'10%20seconds',pause:!f,section:1,value:10000),time:(from:now-4h,mode:quick,to:now))&_a=(filters:!(),panels:!((col:1,columns:!(message,Severity,source,SourceName,Category),id:Errors-Production,row:1,size_x:12,size_y:4,sort:!(timestamp,desc),type:search),(col:1,columns:!(message,Severity,source,SourceName,Category),id:Warnings-Production,row:5,size_x:12,size_y:4,sort:!(timestamp,desc),type:search)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'System%20Health')")]
         public string OnTrayBalloonClickURI {
             get {
                 return ((string)(this["OnTrayBalloonClickURI"]));

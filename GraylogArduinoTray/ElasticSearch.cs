@@ -49,10 +49,15 @@ namespace GraylogArduinoTray
                         throw new Exception(String.Format("Server error (HTTP {0}: {1}).", httpResponse.StatusCode, httpResponse.StatusDescription));
                     }
 
-                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(SearchResponse));
+                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(SearchResponse)
+                        //, new JsonSerializerSettings {
+                        //    NullValueHandling = NullValueHandling.Ignore
+                        //}
+                    );
                     SearchResponse jsonResponse = (SearchResponse)jsonSerializer.ReadObject(response.GetResponseStream());
 
-                    numberOfHits = jsonResponse.hits.total;
+                    if (jsonResponse.hits.total.HasValue)
+                        numberOfHits = jsonResponse.hits.total.Value;
 
                 }
                 else
@@ -89,7 +94,7 @@ namespace GraylogArduinoTray
         {
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int took;
+            public int? took;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public bool timed_out;
@@ -107,13 +112,13 @@ namespace GraylogArduinoTray
         {
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int total;
+            public int? total;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int successful;
+            public int? successful;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int failed;
+            public int? failed;
         }
 
         // Type created for JSON at <<root>> --> hits
@@ -122,10 +127,10 @@ namespace GraylogArduinoTray
         {
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int total;
+            public int? total;
 
             //[System.Runtime.Serialization.DataMemberAttribute()]
-            //public double max_score;
+            //public double? max_score;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public Hits1[] hits;
@@ -146,7 +151,7 @@ namespace GraylogArduinoTray
             public string _id;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public double _score;
+            public double? _score;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public _source _source;
@@ -158,7 +163,7 @@ namespace GraylogArduinoTray
         {
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int RecordNumber;
+            public int? RecordNumber;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public string Channel;
@@ -182,13 +187,13 @@ namespace GraylogArduinoTray
             public string Severity;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int level;
+            public int? level;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public string _id;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int SeverityValue;
+            public int? SeverityValue;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public string gl2_source_input;
@@ -203,16 +208,16 @@ namespace GraylogArduinoTray
             public string full_message;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int ThreadID;
+            public int? ThreadID;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int EventID;
+            public int? EventID;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public string EventType;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int ProcessID;
+            public int? ProcessID;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public string message;
@@ -227,7 +232,7 @@ namespace GraylogArduinoTray
             public string source;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
-            public int Task;
+            public int? Task;
 
             [System.Runtime.Serialization.DataMemberAttribute()]
             public string[] streams;

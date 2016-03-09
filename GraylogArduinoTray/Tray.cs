@@ -64,7 +64,7 @@ namespace GraylogArduinoTray
             trayIcon = new NotifyIcon();
             trayIcon.Text = "GraylogArduino";
             trayIcon.BalloonTipClicked += new EventHandler(TrayIcon_Click);
-            setTrayIcon(queryStatus.NoConnection);
+            setTrayIcon(queryStatus.Okay);
 
             // Add menu to tray icon and show it.
             trayIcon.ContextMenu = trayMenu;
