@@ -131,15 +131,16 @@ namespace GraylogArduinoTray
         {
             if (Properties.Settings.Default.ShowBalloon)
             {
-                trayIcon.BalloonTipText = entries + " found.";
+                trayIcon.BalloonTipText = entries + " found." + String.Concat(System.Linq.Enumerable.Repeat(Environment.NewLine, Properties.Settings.Default.Newlines_in_Balloon)) + "_";
                 trayIcon.BalloonTipTitle = "Errors found";
-                trayIcon.ShowBalloonTip(3);
+                trayIcon.ShowBalloonTip(Properties.Settings.Default.BalloonTime_s);
             }
         }
 
         private void TrayIcon_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Properties.Settings.Default.OnTrayBalloonClickURI);
+            if(Properties.Settings.Default.OnTrayBalloonClickURI != "")
+                System.Diagnostics.Process.Start(Properties.Settings.Default.OnTrayBalloonClickURI);
             setTrayIcon(queryStatus.Okay);
         }
 

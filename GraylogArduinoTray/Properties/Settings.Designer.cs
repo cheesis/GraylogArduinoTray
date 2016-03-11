@@ -118,5 +118,29 @@ namespace GraylogArduinoTray.Properties {
                 this["EnableLogging"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int BalloonTime_s {
+            get {
+                return ((int)(this["BalloonTime_s"]));
+            }
+            set {
+                this["BalloonTime_s"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int Newlines_in_Balloon {
+            get {
+                return ((int)(this["Newlines_in_Balloon"]));
+            }
+            set {
+                this["Newlines_in_Balloon"] = value;
+            }
+        }
     }
 }
