@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="Graylog Monitor" Language="1033" Version="1.1.0.0" Manufacturer="Justus" UpgradeCode="2804548e-2cb0-4158-82bc-31840b68520b">
+	<Product Id="*" Name="Graylog Monitor" Language="1033" Version="1.1.0.1" Manufacturer="Justus" UpgradeCode="2804548e-2cb0-4158-82bc-31840b68520b">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
